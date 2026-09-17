@@ -1,4 +1,4 @@
-<!DOCTYPE >
+<!DOCTYPE html>
 <html>
   <head>
     <link rel="stylesheet" href="belajar.css">
@@ -8,13 +8,64 @@
     
   </head>
   <body>
-    <form action= "">
+    <form id="loginForm">
       <h3>Login</h3>
       <input type="text"
-       placeholder= "Username" >
+        id="username"
+       placeholder="Username"
+       required>
       <input type="Password"
-       placeholder=" Password">
+        id="password"
+       placeholder="Password"
+       required>
+          <p id="loginError" class="login-error" role="alert" hidden></p>
       <button type="submit">Login</button>
-    </form>  
+    </form>
+
+    <section id="surprise" class="surprise" aria-live="polite" hidden>
+      <div class="heart" aria-hidden="true">&#10084;</div>
+      <p class="eyebrow">Pesan spesial</p>
+      <h1>Untuk Enjel Tersayang</h1>
+      <p class="message">Kamu adalah alasan kecil di balik banyak senyum besarku. Terima kasih sudah menjadi seseorang yang begitu istimewa.</p>
+      <button class="back-button" type="button" id="backButton">Kembali</button>
+    </section>
+
+    <script>
+      const loginForm = document.getElementById('loginForm');
+      const username = document.getElementById('username');
+      const password = document.getElementById('password');
+      const loginError = document.getElementById('loginError');
+      const surprise = document.getElementById('surprise');
+      const backButton = document.getElementById('backButton');
+
+      loginForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        if (username.value.trim() !== 'Angel pola') {
+          loginError.textContent = 'Username tidak sesuai.';
+          loginError.hidden = false;
+          surprise.hidden = true;
+          return;
+        }
+
+        if (password.value !== '15062026') {
+          loginError.textContent = 'Password salah.';
+          loginError.hidden = false;
+          surprise.hidden = true;
+          return;
+        }
+
+        loginError.hidden = true;
+        loginForm.hidden = true;
+        surprise.hidden = false;
+      });
+
+      backButton.addEventListener('click', () => {
+        surprise.hidden = true;
+        loginForm.hidden = false;
+        loginForm.reset();
+        loginError.hidden = true;
+      });
+    </script>
   </body>
 </html>
